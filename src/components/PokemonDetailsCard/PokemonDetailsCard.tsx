@@ -66,6 +66,18 @@ export function PokemonDetailsCard({
               ) : null}
             </div>
 
+            <div className={styles.typeList} aria-label="Pokemon types">
+              {[...pokemon.types]
+                .sort(
+                  (firstType, secondType) => firstType.slot - secondType.slot,
+                )
+                .map((typeSlot) => (
+                  <span className={styles.typeTag} key={typeSlot.type.name}>
+                    {formatPokemonName(typeSlot.type.name)}
+                  </span>
+                ))}
+            </div>
+
             <div className={styles.facts}>
               <div className={styles.fact}>
                 <span className={styles.factLabel}>Height</span>
@@ -123,7 +135,7 @@ export function PokemonDetailsCard({
               </div>
             </section>
 
-            <section aria-labelledby="xp-title">
+            <section className={styles.experience} aria-labelledby="xp-title">
               <h3 id="xp-title" className={styles.sectionTitle}>
                 Base Experience
               </h3>

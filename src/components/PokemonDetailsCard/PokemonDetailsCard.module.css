@@ -73,11 +73,29 @@
   object-fit: contain;
 }
 
+.typeList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.typeTag {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-pink) 82%, var(--surface-bg));
+  color: var(--surface-bg);
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+}
+
 .facts {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .fact {
@@ -143,6 +161,10 @@
 }
 
 .abilities {
+  margin-top: 24px;
+}
+
+.experience {
   margin-top: 24px;
 }
 

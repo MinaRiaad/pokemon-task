@@ -30,6 +30,10 @@ export interface PokemonDetails {
     base_stat: number;
     stat: { name: string };
   }>;
+  types: Array<{
+    slot: number;
+    type: { name: string };
+  }>;
   abilities: Array<{
     ability: { name: string };
     is_hidden: boolean;
