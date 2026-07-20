@@ -44,13 +44,18 @@ function App() {
 
   useEffect(() => {
     writeUrlState(readUrlState(), true);
+    window.history.scrollRestoration = "manual";
+    window.scrollTo({ top: 0, left: 0 });
 
     const handlePopState = () => {
       setUrlState(readUrlState());
     };
 
     window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
+    return () => {
+      window.history.scrollRestoration = "auto";
+      window.removeEventListener("popstate", handlePopState);
+    };
   }, []);
 
   const setDisplayMode = (displayMode: DisplayMode) => {
