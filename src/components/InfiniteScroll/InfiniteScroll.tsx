@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import styles from "./InfiniteScroll.module.css";
 
 export interface InfiniteScrollProps {
@@ -6,10 +5,10 @@ export interface InfiniteScrollProps {
   hasMore: boolean;
   isLoading: boolean;
   onLoadMore: () => void;
+  loadMoreLabel?: string;
   loadingFallback?: React.ReactNode;
   endMessage?: React.ReactNode;
   className?: string;
-  rootMargin?: string;
 }
 
 export function InfiniteScroll({
@@ -17,35 +16,11 @@ export function InfiniteScroll({
   hasMore,
   isLoading,
   onLoadMore,
+  loadMoreLabel = "Load more",
   loadingFallback,
   endMessage,
   className,
-  rootMargin = "700px 0px",
 }: InfiniteScrollProps) {
-  const sentinelRef = useRef<HTMLDivElement | null>(null);
-  const onLoadMoreRef = useRef(onLoadMore);
-
-  useEffect(() => {
-    onLoadMoreRef.current = onLoadMore;
-  }, [onLoadMore]);
-
-  useEffect(() => {
-    const sentinel = sentinelRef.current;
-    if (!sentinel || !hasMore || isLoading) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          onLoadMoreRef.current();
-        }
-      },
-      { root: null, rootMargin, threshold: 0 },
-    );
-
-    observer.observe(sentinel);
-    return () => observer.disconnect();
-  }, [hasMore, isLoading, rootMargin]);
-
   const classNames = [styles.feed, className ?? ""].filter(Boolean).join(" ");
 
   return (
@@ -54,7 +29,17 @@ export function InfiniteScroll({
       {isLoading ? (
         <div className={styles.status}>{loadingFallback}</div>
       ) : null}
-      <div ref={sentinelRef} className={styles.sentinel} aria-hidden="true" />
+      {hasMore && !isLoading ? (
+        <div className={styles.status}>
+          <button
+            className={styles.loadButton}
+            type="button"
+            onClick={onLoadMore}
+          >
+            {loadMoreLabel}
+          </button>
+        </div>
+      ) : null}
       {!hasMore && endMessage ? (
         <div className={styles.status}>{endMessage}</div>
       ) : null}

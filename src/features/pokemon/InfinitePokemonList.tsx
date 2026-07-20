@@ -26,6 +26,7 @@ export function InfinitePokemonList({
       onLoadMore={() => {
         void infiniteQuery.fetchNextPage();
       }}
+      loadMoreLabel="Load more Pokemon"
       loadingFallback={
         <div className={styles.loadMore}>
           <span className={styles.spinner} aria-hidden="true" />
