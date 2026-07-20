@@ -1,0 +1,64 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 22px;
+}
+
+.pages {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.control,
+.page {
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #111827;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.page {
+  padding: 0;
+}
+
+.control:disabled {
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.control:not(:disabled):hover,
+.page:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+}
+
+.control:focus-visible,
+.page:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, 0.35);
+  outline-offset: 2px;
+}
+
+.active {
+  border-color: #111827;
+  background: #111827;
+  color: #ffffff;
+}
+
+.ellipsis {
+  min-width: 22px;
+  color: #6b7280;
+  font-size: 11px;
+  font-weight: 800;
+  text-align: center;
+}
