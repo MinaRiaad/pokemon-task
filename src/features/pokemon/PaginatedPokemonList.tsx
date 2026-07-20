@@ -17,17 +17,14 @@ export function PaginatedPokemonList({
   const listQuery = usePokemonList(currentPage);
   const totalPages = Math.max(
     1,
-    Math.ceil((listQuery.data?.count ?? 0) / POKEMON_PAGE_SIZE),
+    Math.ceil(listQuery.data.count / POKEMON_PAGE_SIZE),
   );
 
   return (
     <>
-      {listQuery.isError ? (
-        <p className={styles.statusText}>Unable to load Pokemon.</p>
-      ) : null}
       <PokemonGrid
-        items={listQuery.data?.results}
-        isLoading={listQuery.isLoading || !listQuery.data}
+        items={listQuery.data.results}
+        isLoading={false}
         onPokemonSelect={onPokemonSelect}
       />
       <Pagination
@@ -36,7 +33,7 @@ export function PaginatedPokemonList({
         onPageChange={onPageChange}
       />
       <p className={styles.pageMeta}>
-        Page {currentPage} of {totalPages} ({listQuery.data?.count ?? 0} Pokemon
+        Page {currentPage} of {totalPages} ({listQuery.data.count} Pokemon
         total)
       </p>
     </>

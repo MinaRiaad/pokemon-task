@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { useInfinitePokemonList } from "../../api/pokemonQueries";
 import { InfiniteScroll } from "../../components/InfiniteScroll";
-import { PokemonGrid } from "../../components/PokemonGrid";
 import { VirtualPokemonGrid } from "../../components/VirtualPokemonGrid";
 import styles from "./PokemonList.module.css";
 
@@ -35,14 +34,7 @@ export function InfinitePokemonList({
       }
       endMessage="You've reached the end of the Pokedex."
     >
-      {infiniteQuery.isError ? (
-        <p className={styles.statusText}>Unable to load Pokemon.</p>
-      ) : null}
-      {infiniteQuery.isLoading ? (
-        <PokemonGrid isLoading />
-      ) : (
-        <VirtualPokemonGrid items={pokemon} onPokemonSelect={onPokemonSelect} />
-      )}
+      <VirtualPokemonGrid items={pokemon} onPokemonSelect={onPokemonSelect} />
     </InfiniteScroll>
   );
 }

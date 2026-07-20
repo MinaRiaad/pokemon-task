@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { PokedexHeader, type DisplayMode } from "./components/PokedexHeader";
+import { PokemonGrid } from "./components/PokemonGrid";
 import { InfinitePokemonList } from "./features/pokemon/InfinitePokemonList";
 import { PokemonDetailsView } from "./features/pokemon/PokemonDetailsView";
 import { PaginatedPokemonList } from "./features/pokemon/PaginatedPokemonList";
+import pokemonListStyles from "./features/pokemon/PokemonList.module.css";
 import "./App.css";
 
 interface AppUrlState {
@@ -108,10 +110,16 @@ function App() {
   if (urlState.selectedPokemonId) {
     return (
       <main className="page detailPage">
-        <PokemonDetailsView
-          pokemonId={urlState.selectedPokemonId}
-          onBack={clearSelectedPokemonId}
-        />
+        <Suspense
+          fallback={
+            <p className={pokemonListStyles.loadingText}>Loading Pokemon...</p>
+          }
+        >
+          <PokemonDetailsView
+            pokemonId={urlState.selectedPokemonId}
+            onBack={clearSelectedPokemonId}
+          />
+        </Suspense>
       </main>
     );
   }
@@ -122,15 +130,17 @@ function App() {
         displayMode={urlState.displayMode}
         onDisplayModeChange={setDisplayMode}
       />
-      {urlState.displayMode === "pagination" ? (
-        <PaginatedPokemonList
-          currentPage={urlState.currentPage}
-          onPageChange={setCurrentPage}
-          onPokemonSelect={setSelectedPokemonId}
-        />
-      ) : (
-        <InfinitePokemonList onPokemonSelect={setSelectedPokemonId} />
-      )}
+      <Suspense fallback={<PokemonGrid isLoading />}>
+        {urlState.displayMode === "pagination" ? (
+          <PaginatedPokemonList
+            currentPage={urlState.currentPage}
+            onPageChange={setCurrentPage}
+            onPokemonSelect={setSelectedPokemonId}
+          />
+        ) : (
+          <InfinitePokemonList onPokemonSelect={setSelectedPokemonId} />
+        )}
+      </Suspense>
     </main>
   );
 }
