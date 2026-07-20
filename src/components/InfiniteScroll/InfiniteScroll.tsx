@@ -20,7 +20,7 @@ export function InfiniteScroll({
   loadingFallback,
   endMessage,
   className,
-  rootMargin = "320px 0px",
+  rootMargin = "700px 0px",
 }: InfiniteScrollProps) {
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const onLoadMoreRef = useRef(onLoadMore);
