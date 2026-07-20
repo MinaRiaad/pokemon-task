@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useInfinitePokemonList } from "../../api/pokemonQueries";
 import { InfiniteScroll } from "../../components/InfiniteScroll";
 import { PokemonGrid } from "../../components/PokemonGrid";
+import { VirtualPokemonGrid } from "../../components/VirtualPokemonGrid";
 import styles from "./PokemonList.module.css";
 
 export function InfinitePokemonList() {
@@ -19,13 +20,22 @@ export function InfinitePokemonList() {
       onLoadMore={() => {
         void infiniteQuery.fetchNextPage();
       }}
-      loadingFallback={<PokemonGrid isLoading label="Loading more Pokemon" />}
+      loadingFallback={
+        <div className={styles.loadMore}>
+          <span className={styles.spinner} aria-hidden="true" />
+          <span>Loading more Pokemon...</span>
+        </div>
+      }
       endMessage="You've reached the end of the Pokedex."
     >
       {infiniteQuery.isError ? (
         <p className={styles.statusText}>Unable to load Pokemon.</p>
       ) : null}
-      <PokemonGrid items={pokemon} isLoading={infiniteQuery.isLoading} />
+      {infiniteQuery.isLoading ? (
+        <PokemonGrid isLoading />
+      ) : (
+        <VirtualPokemonGrid items={pokemon} />
+      )}
     </InfiniteScroll>
   );
 }
