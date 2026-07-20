@@ -10,6 +10,7 @@ import styles from "./VirtualPokemonGrid.module.css";
 
 export interface VirtualPokemonGridProps {
   items: PokemonListItem[];
+  onPokemonSelect?: (id: number) => void;
 }
 
 const DESKTOP_COLUMNS = 4;
@@ -24,7 +25,10 @@ function getColumnCount() {
     : DESKTOP_COLUMNS;
 }
 
-export function VirtualPokemonGrid({ items }: VirtualPokemonGridProps) {
+export function VirtualPokemonGrid({
+  items,
+  onPokemonSelect,
+}: VirtualPokemonGridProps) {
   const [columnCount, setColumnCount] = useState(getColumnCount);
 
   useEffect(() => {
@@ -77,6 +81,7 @@ export function VirtualPokemonGrid({ items }: VirtualPokemonGridProps) {
                 id={id}
                 name={item.name}
                 imageUrl={getPokemonArtworkUrl(id)}
+                onClick={onPokemonSelect}
               />
             );
           })}

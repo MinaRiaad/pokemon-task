@@ -20,6 +20,15 @@
   text-align: center;
 }
 
+.loadingText {
+  width: min(100%, 940px);
+  margin: 0 auto 14px;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+
 .loadMore {
   min-height: 42px;
   display: inline-flex;

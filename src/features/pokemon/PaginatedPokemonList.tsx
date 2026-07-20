@@ -6,11 +6,13 @@ import styles from "./PokemonList.module.css";
 export interface PaginatedPokemonListProps {
   currentPage: number;
   onPageChange: (page: number) => void;
+  onPokemonSelect: (id: number) => void;
 }
 
 export function PaginatedPokemonList({
   currentPage,
   onPageChange,
+  onPokemonSelect,
 }: PaginatedPokemonListProps) {
   const listQuery = usePokemonList(currentPage);
   const totalPages = Math.max(
@@ -26,6 +28,7 @@ export function PaginatedPokemonList({
       <PokemonGrid
         items={listQuery.data?.results}
         isLoading={listQuery.isLoading || !listQuery.data}
+        onPokemonSelect={onPokemonSelect}
       />
       <Pagination
         currentPage={currentPage}

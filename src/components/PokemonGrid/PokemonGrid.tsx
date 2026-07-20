@@ -11,12 +11,14 @@ export interface PokemonGridProps {
   items?: PokemonListItem[];
   isLoading: boolean;
   label?: string;
+  onPokemonSelect?: (id: number) => void;
 }
 
 export function PokemonGrid({
   items = [],
   isLoading,
   label = "Pokemon list",
+  onPokemonSelect,
 }: PokemonGridProps) {
   return (
     <section className={styles.grid} aria-label={label}>
@@ -34,6 +36,7 @@ export function PokemonGrid({
                 id={id}
                 name={item.name}
                 imageUrl={getPokemonArtworkUrl(id)}
+                onClick={onPokemonSelect}
               />
             );
           })}

@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+.detailPage {
+  display: grid;
+  align-items: center;
+}
+
 @media (max-width: 720px) {
   .page {
     padding-inline: 18px;

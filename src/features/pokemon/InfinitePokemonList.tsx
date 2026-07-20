@@ -5,7 +5,13 @@ import { PokemonGrid } from "../../components/PokemonGrid";
 import { VirtualPokemonGrid } from "../../components/VirtualPokemonGrid";
 import styles from "./PokemonList.module.css";
 
-export function InfinitePokemonList() {
+export interface InfinitePokemonListProps {
+  onPokemonSelect: (id: number) => void;
+}
+
+export function InfinitePokemonList({
+  onPokemonSelect,
+}: InfinitePokemonListProps) {
   const infiniteQuery = useInfinitePokemonList();
   const pokemon = useMemo(
     () => infiniteQuery.data?.pages.flatMap((page) => page.results) ?? [],
@@ -34,7 +40,7 @@ export function InfinitePokemonList() {
       {infiniteQuery.isLoading ? (
         <PokemonGrid isLoading />
       ) : (
-        <VirtualPokemonGrid items={pokemon} />
+        <VirtualPokemonGrid items={pokemon} onPokemonSelect={onPokemonSelect} />
       )}
     </InfiniteScroll>
   );
