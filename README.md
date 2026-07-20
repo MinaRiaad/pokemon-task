@@ -2,6 +2,8 @@
 
 A responsive Pokemon browser built with React, TypeScript, Vite, TanStack Query, and TanStack Virtual. The app uses the public PokeAPI to list Pokemon, switch between pagination and load-more browsing, and open a detailed Pokemon profile.
 
+Live app: https://pokemon-task.pages.dev
+
 ## Features
 
 - Paginated Pokemon list with URL-persisted page state
