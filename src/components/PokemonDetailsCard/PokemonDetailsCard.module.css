@@ -1,5 +1,5 @@
 .screen {
-  width: min(100%, 980px);
+  width: min(100%, var(--details-layout-width));
   margin: 0 auto;
   text-align: left;
 }
@@ -8,28 +8,28 @@
   min-height: 30px;
   margin-bottom: 18px;
   padding: 0 12px;
-  border: 1px solid rgba(226, 232, 240, 0.9);
+  border: 1px solid var(--surface-border-subtle);
   border-radius: 4px;
-  background: #ffffff;
-  color: #111827;
+  background: var(--surface-bg);
+  color: var(--text-strong);
   font-size: 11px;
   font-weight: 800;
   cursor: pointer;
 }
 
 .card {
-  width: min(100%, 760px);
+  width: min(100%, var(--details-card-width));
   margin: 0 auto;
   overflow: hidden;
   border-radius: 4px;
-  background: #ffffff;
-  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.1);
+  background: var(--surface-bg);
+  box-shadow: var(--detail-shadow);
 }
 
 .header {
   padding: 24px 32px 22px;
-  background: linear-gradient(90deg, #9657f5 0%, #ec3b9b 100%);
-  color: #ffffff;
+  background: var(--detail-gradient);
+  color: var(--surface-bg);
   text-align: center;
 }
 
@@ -64,7 +64,7 @@
   display: grid;
   place-items: center;
   border-radius: 999px;
-  background: #f8fafc;
+  background: var(--subtle-surface);
 }
 
 .image {
@@ -83,13 +83,13 @@
 .fact {
   padding: 13px;
   border-radius: 4px;
-  background: #fbfcfe;
+  background: var(--soft-surface);
   text-align: center;
 }
 
 .factLabel {
   display: block;
-  color: #6b7280;
+  color: var(--text-muted);
   font-size: 10px;
   font-weight: 800;
 }
@@ -97,13 +97,13 @@
 .fact strong {
   display: block;
   margin-top: 4px;
-  color: #111827;
+  color: var(--text-strong);
   font-size: 15px;
 }
 
 .sectionTitle {
   margin: 0 0 12px;
-  color: #111827;
+  color: var(--text-strong);
   font-size: 16px;
   line-height: 1.2;
   font-weight: 900;
@@ -123,7 +123,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #111827;
+  color: var(--text-strong);
   font-size: 11px;
   font-weight: 800;
 }
@@ -132,14 +132,14 @@
   height: 8px;
   overflow: hidden;
   border-radius: 999px;
-  background: #eef2f7;
+  background: color-mix(in srgb, var(--text-soft) 12%, transparent);
 }
 
 .statBar {
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, #9657f5 0%, #ec3b9b 100%);
+  background: var(--detail-gradient);
 }
 
 .abilities {
@@ -155,15 +155,15 @@
 .ability {
   padding: 5px 9px;
   border-radius: 999px;
-  background: #fff1f7;
-  color: #be185d;
+  background: color-mix(in srgb, var(--accent-pink) 12%, var(--surface-bg));
+  color: var(--accent-magenta);
   font-size: 10px;
   font-weight: 800;
 }
 
 .xp {
   margin: 0;
-  color: #8b5cf6;
+  color: var(--accent-violet);
   font-size: 22px;
   font-weight: 900;
 }

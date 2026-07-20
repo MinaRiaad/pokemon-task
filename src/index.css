@@ -2,12 +2,46 @@
   --page-bg: linear-gradient(180deg, #e8fff4 0%, #dff8ee 50%, #d6f6ea 100%);
   --surface-bg: #ffffff;
   --surface-border: rgba(16, 24, 40, 0.06);
+  --surface-border-subtle: rgba(226, 232, 240, 0.9);
+  --surface-border-card: rgba(226, 232, 240, 0.78);
+  --surface-border-hover: rgba(148, 163, 184, 0.75);
+  --surface-border-strong: rgba(17, 24, 39, 0.8);
   --muted-surface: #f3f5f7;
+  --subtle-surface: #f8fafc;
+  --soft-surface: #fbfcfe;
+  --skeleton-surface: #e5e7eb;
   --text: #0b1020;
+  --text-strong: #111827;
   --text-muted: #6b7280;
+  --text-soft: #64748b;
+  --text-disabled: #9ca3af;
   --heading: #0b1020;
   --accent-yellow: #ffd24d;
+  --accent-purple: #9657f5;
+  --accent-pink: #ec3b9b;
+  --accent-magenta: #be185d;
+  --accent-violet: #8b5cf6;
+  --danger: #b91c1c;
+  --focus-ring: rgba(59, 130, 246, 0.35);
   --card-shadow: 0 8px 20px rgba(11, 16, 32, 0.06);
+  --floating-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+  --card-shadow-hover: 0 12px 26px rgba(15, 23, 42, 0.09);
+  --card-shadow-selected: 0 14px 28px rgba(15, 23, 42, 0.12);
+  --detail-shadow: 0 18px 42px rgba(15, 23, 42, 0.1);
+  --skeleton-shimmer: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.58) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  --detail-gradient: linear-gradient(
+    90deg,
+    var(--accent-purple) 0%,
+    var(--accent-pink) 100%
+  );
+  --details-layout-width: 980px;
+  --details-card-width: 760px;
+  --list-width: 940px;
   --radius-sm: 6px;
   --radius-md: 10px;
   --grid-gap: 24px;

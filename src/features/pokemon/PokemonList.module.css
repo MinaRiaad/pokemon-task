@@ -1,29 +1,29 @@
 .feed {
-  width: min(100%, 940px);
+  width: min(100%, var(--list-width));
   margin: 0 auto;
 }
 
 .pageMeta {
   margin: 9px 0 0;
-  color: #64748b;
+  color: var(--text-soft);
   font-size: 11px;
   font-weight: 600;
   text-align: center;
 }
 
 .statusText {
-  width: min(100%, 940px);
+  width: min(100%, var(--list-width));
   margin: 0 auto 14px;
-  color: #b91c1c;
+  color: var(--danger);
   font-size: 12px;
   font-weight: 700;
   text-align: center;
 }
 
 .loadingText {
-  width: min(100%, 940px);
+  width: min(100%, var(--list-width));
   margin: 0 auto 14px;
-  color: #475569;
+  color: var(--text-soft);
   font-size: 12px;
   font-weight: 700;
   text-align: center;
@@ -36,11 +36,11 @@
   justify-content: center;
   gap: 8px;
   padding: 8px 14px;
-  border: 1px solid rgba(226, 232, 240, 0.9);
+  border: 1px solid var(--surface-border-subtle);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.82);
-  color: #475569;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+  background: color-mix(in srgb, var(--surface-bg) 82%, transparent);
+  color: var(--text-soft);
+  box-shadow: var(--floating-shadow);
   font-size: 12px;
   font-weight: 800;
 }
@@ -48,8 +48,8 @@
 .spinner {
   width: 14px;
   height: 14px;
-  border: 2px solid #cbd5e1;
-  border-top-color: #111827;
+  border: 2px solid color-mix(in srgb, var(--text-soft) 35%, transparent);
+  border-top-color: var(--text-strong);
   border-radius: 999px;
   animation: spin 700ms linear infinite;
 }

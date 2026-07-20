@@ -7,7 +7,7 @@
 
 .title {
   margin: 0;
-  color: #111827;
+  color: var(--text-strong);
   font-size: 24px;
   line-height: 1.1;
   font-weight: 800;
@@ -16,7 +16,7 @@
 
 .subtitle {
   margin: 0;
-  color: #64748b;
+  color: var(--text-soft);
   font-size: 12px;
   line-height: 1.4;
   font-weight: 500;
@@ -31,16 +31,16 @@
 .control {
   min-height: 26px;
   padding: 0 14px;
-  border: 1px solid #111827;
+  border: 1px solid var(--text-strong);
   border-radius: 4px;
-  background: #ffffff;
-  color: #111827;
+  background: var(--surface-bg);
+  color: var(--text-strong);
   font-size: 11px;
   font-weight: 700;
   cursor: pointer;
 }
 
 .controlActive {
-  background: #111827;
-  color: #ffffff;
+  background: var(--text-strong);
+  color: var(--surface-bg);
 }

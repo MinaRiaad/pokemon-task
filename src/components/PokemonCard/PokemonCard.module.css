@@ -6,11 +6,11 @@
   align-items: center;
   gap: 10px;
   padding: 14px 14px 13px;
-  border: 1px solid rgba(226, 232, 240, 0.78);
+  border: 1px solid var(--surface-border-card);
   border-radius: 4px;
-  background: #ffffff;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
-  color: #101827;
+  background: var(--surface-bg);
+  box-shadow: var(--card-shadow);
+  color: var(--text);
   text-align: center;
   box-sizing: border-box;
 }
@@ -25,19 +25,19 @@ button.card {
 }
 
 button.card:hover {
-  border-color: rgba(148, 163, 184, 0.75);
-  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.09);
+  border-color: var(--surface-border-hover);
+  box-shadow: var(--card-shadow-hover);
   transform: translateY(-2px);
 }
 
 button.card:focus-visible {
-  outline: 3px solid rgba(59, 130, 246, 0.35);
+  outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
 }
 
 .selected {
-  border-color: rgba(17, 24, 39, 0.8);
-  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+  border-color: var(--surface-border-strong);
+  box-shadow: var(--card-shadow-selected);
 }
 
 .imageFrame {
@@ -46,7 +46,7 @@ button.card:focus-visible {
   display: grid;
   place-items: center;
   border-radius: 3px;
-  background: #f8fafc;
+  background: var(--subtle-surface);
   overflow: hidden;
 }
 
@@ -65,7 +65,7 @@ button.card:focus-visible {
 
 .name {
   margin: 0;
-  color: #111827;
+  color: var(--text-strong);
   font-size: 13px;
   line-height: 1.15;
   font-weight: 800;
@@ -73,7 +73,7 @@ button.card:focus-visible {
 
 .number {
   margin: 0;
-  color: #6b7280;
+  color: var(--text-muted);
   font-size: 10px;
   line-height: 1.2;
   font-weight: 600;
@@ -87,7 +87,7 @@ button.card:focus-visible {
 .skeletonLine {
   position: relative;
   overflow: hidden;
-  background: #e5e7eb;
+  background: var(--skeleton-surface);
 }
 
 .skeletonImage::after,
@@ -96,12 +96,7 @@ button.card:focus-visible {
   position: absolute;
   inset: 0;
   transform: translateX(-100%);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.58) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: var(--skeleton-shimmer);
   animation: shimmer 1.35s ease-in-out infinite;
 }
 
