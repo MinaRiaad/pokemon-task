@@ -78,3 +78,54 @@ button.card:focus-visible {
   line-height: 1.2;
   font-weight: 600;
 }
+
+.skeletonCard {
+  align-items: stretch;
+}
+
+.skeletonImage,
+.skeletonLine {
+  position: relative;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+.skeletonImage::after,
+.skeletonLine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.58) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 1.35s ease-in-out infinite;
+}
+
+.skeletonCopy {
+  display: grid;
+  gap: 7px;
+  padding-top: 2px;
+}
+
+.skeletonLine {
+  height: 8px;
+  border-radius: 999px;
+}
+
+.skeletonLineWide {
+  width: 72%;
+}
+
+.skeletonLineShort {
+  width: 48%;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
