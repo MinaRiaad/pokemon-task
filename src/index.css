@@ -1,5 +1,11 @@
 :root {
   --page-bg: linear-gradient(180deg, #e8fff4 0%, #dff8ee 50%, #d6f6ea 100%);
+  --details-page-bg: linear-gradient(
+    135deg,
+    #f8f2ff 0%,
+    #fff4fb 48%,
+    #ffe8f5 100%
+  );
   --surface-bg: #ffffff;
   --surface-border: rgba(16, 24, 40, 0.06);
   --surface-border-subtle: rgba(226, 232, 240, 0.9);
