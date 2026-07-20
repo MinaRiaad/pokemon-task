@@ -20,6 +20,34 @@
   text-align: center;
 }
 
+.errorState {
+  width: min(100%, var(--list-width));
+  margin: 0 auto;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  color: var(--danger);
+  text-align: center;
+}
+
+.retryButton {
+  min-height: 32px;
+  padding: 0 14px;
+  border: 1px solid var(--text-strong);
+  border-radius: 4px;
+  background: var(--text-strong);
+  color: var(--surface-bg);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.retryButton:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
 .loadingText {
   width: min(100%, var(--list-width));
   margin: 0 auto 14px;

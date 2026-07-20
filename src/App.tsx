@@ -1,6 +1,8 @@
 import { Suspense, useEffect, useState } from "react";
+import { QueryErrorResetBoundary } from "@tanstack/react-query";
 import { PokedexHeader, type DisplayMode } from "./components/PokedexHeader";
 import { PokemonGrid } from "./components/PokemonGrid";
+import ErrorBoundary from "./ErrorBoundary";
 import { InfinitePokemonList } from "./features/pokemon/InfinitePokemonList";
 import { PokemonDetailsView } from "./features/pokemon/PokemonDetailsView";
 import { PaginatedPokemonList } from "./features/pokemon/PaginatedPokemonList";
@@ -52,6 +54,21 @@ function writeUrlState(nextState: AppUrlState, replace = false) {
   } else {
     window.history.pushState(null, "", nextUrl);
   }
+}
+
+function PokemonErrorFallback({ onRetry }: { onRetry: () => void }) {
+  return (
+    <div className={pokemonListStyles.errorState} role="alert">
+      <p className={pokemonListStyles.statusText}>Unable to load Pokemon.</p>
+      <button
+        className={pokemonListStyles.retryButton}
+        type="button"
+        onClick={onRetry}
+      >
+        Retry
+      </button>
+    </div>
+  );
 }
 
 function App() {
@@ -108,18 +125,33 @@ function App() {
   };
 
   if (urlState.selectedPokemonId) {
+    const selectedPokemonId = urlState.selectedPokemonId;
+
     return (
       <main className="page detailPage">
-        <Suspense
-          fallback={
-            <p className={pokemonListStyles.loadingText}>Loading Pokemon...</p>
-          }
-        >
-          <PokemonDetailsView
-            pokemonId={urlState.selectedPokemonId}
-            onBack={clearSelectedPokemonId}
-          />
-        </Suspense>
+        <QueryErrorResetBoundary>
+          {({ reset }) => (
+            <ErrorBoundary
+              onReset={reset}
+              fallbackRender={({ resetErrorBoundary }) => (
+                <PokemonErrorFallback onRetry={resetErrorBoundary} />
+              )}
+            >
+              <Suspense
+                fallback={
+                  <p className={pokemonListStyles.loadingText}>
+                    Loading Pokemon...
+                  </p>
+                }
+              >
+                <PokemonDetailsView
+                  pokemonId={selectedPokemonId}
+                  onBack={clearSelectedPokemonId}
+                />
+              </Suspense>
+            </ErrorBoundary>
+          )}
+        </QueryErrorResetBoundary>
       </main>
     );
   }
@@ -130,17 +162,28 @@ function App() {
         displayMode={urlState.displayMode}
         onDisplayModeChange={setDisplayMode}
       />
-      <Suspense fallback={<PokemonGrid isLoading />}>
-        {urlState.displayMode === "pagination" ? (
-          <PaginatedPokemonList
-            currentPage={urlState.currentPage}
-            onPageChange={setCurrentPage}
-            onPokemonSelect={setSelectedPokemonId}
-          />
-        ) : (
-          <InfinitePokemonList onPokemonSelect={setSelectedPokemonId} />
+      <QueryErrorResetBoundary>
+        {({ reset }) => (
+          <ErrorBoundary
+            onReset={reset}
+            fallbackRender={({ resetErrorBoundary }) => (
+              <PokemonErrorFallback onRetry={resetErrorBoundary} />
+            )}
+          >
+            <Suspense fallback={<PokemonGrid isLoading />}>
+              {urlState.displayMode === "pagination" ? (
+                <PaginatedPokemonList
+                  currentPage={urlState.currentPage}
+                  onPageChange={setCurrentPage}
+                  onPokemonSelect={setSelectedPokemonId}
+                />
+              ) : (
+                <InfinitePokemonList onPokemonSelect={setSelectedPokemonId} />
+              )}
+            </Suspense>
+          </ErrorBoundary>
         )}
-      </Suspense>
+      </QueryErrorResetBoundary>
     </main>
   );
 }
